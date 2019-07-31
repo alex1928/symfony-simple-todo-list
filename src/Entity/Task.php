@@ -26,10 +26,6 @@ class Task
      */
     private $addDate;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $dueDate;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tasks")
@@ -63,18 +59,6 @@ class Task
     public function setAddDate(\DateTimeInterface $addDate): self
     {
         $this->addDate = $addDate;
-
-        return $this;
-    }
-
-    public function getDueDate(): ?\DateTimeInterface
-    {
-        return $this->dueDate;
-    }
-
-    public function setDueDate(\DateTimeInterface $dueDate): self
-    {
-        $this->dueDate = $dueDate;
 
         return $this;
     }

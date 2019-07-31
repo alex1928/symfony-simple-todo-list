@@ -7,16 +7,19 @@ use App\Entity\Task;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use KnpU\LoremIpsumBundle\KnpUIpsum;
 
 
 class AppFixtures extends Fixture
 {
 
     private $passwordEncoder;
+    private $loremIpsumGenerator;
 
-    public function __construct(UserPasswordEncoderInterface $encoder)
+    public function __construct(UserPasswordEncoderInterface $encoder, KnpUIpsum $generator)
     {
         $this->passwordEncoder = $encoder;
+        $this->loremIpsumGenerator = $generator;
     }
 
     public function load(ObjectManager $manager)
@@ -31,13 +34,12 @@ class AppFixtures extends Fixture
         for($i = 0; $i < 5; $i++) {
 
             $task = new Task();
-            $task->setContent("Test task number " . $i);
+
+            $content = $this->loremIpsumGenerator->getParagraphs($i + 1);
+            $task->setContent($content);
+
             $task->setAddDate(new \DateTime('now'));
 
-            $dateInterval = new \DateInterval('P2DT' . $i . 'H');
-            $dueDate = $task->getAddDate()->add($dateInterval);
-
-            $task->setDueDate($dueDate);
             $task->setUser($user);
             $user->addTask($task);
 
