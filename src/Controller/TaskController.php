@@ -4,17 +4,21 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use App\Form\TaskFormType;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TaskController extends AbstractController
 {
     /**
-     * @Route("/task", name="task")
+     * @Route("/{_locale}/task", name="task", requirements={
+     *     "_locale"="%app.locales%"
+     * })
      */
-    public function index(Request $request)
+    public function index(Request $request, TranslatorInterface $translator, LoggerInterface $logger)
     {
 
         $user = $this->getUser();
@@ -36,10 +40,13 @@ class TaskController extends AbstractController
             $entityManager->persist($task);
             $entityManager->flush();
 
-            $this->addFlash("info", "Task was added.");
+            $this->addFlash("info", $translator->trans("Task has been added."));
 
             return $this->redirectToRoute('task');
         }
+
+        $locale = $request->getLocale();
+        $logger->info($locale);
 
         return $this->render('task/index.html.twig', [
             'controller_name' => 'TaskController',
@@ -49,12 +56,14 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/task/{id}", name="show_task")
+     * @Route("/{_locale}/task/{id}", name="show_task", requirements={
+     *     "_locale"="%app.locales%"
+     * })
      */
-    public function show(Task $task, Request $request) {
+    public function show(Task $task, Request $request, TranslatorInterface $translator) {
 
         $completeForm = $this->createFormBuilder($task)
-            ->add('complete_btn', SubmitType::class, ['label' => 'Completed'])
+            ->add('complete_btn', SubmitType::class, ['label' => $translator->trans("Completed")])
             ->getForm();
 
         $completeForm->handleRequest($request);
@@ -65,7 +74,7 @@ class TaskController extends AbstractController
             $entityManager->remove($task);
             $entityManager->flush();
 
-            $this->addFlash("info", "Tas was completed.");
+            $this->addFlash("info", $translator->trans("Task has been completed."));
 
             return $this->redirectToRoute('task');
         }

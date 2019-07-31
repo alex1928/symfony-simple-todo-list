@@ -3,23 +3,19 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-    <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+    <h1 class="h3 mb-3 font-weight-normal">{% trans %}Register{% endtrans %}</h1>
 
     {{ form_start(registrationForm) }}
 
-        {% if errors is not empty %}
-            <div class="alert alert-danger">{{ errors }}</div>
-        {% endif %}
 
+        <div class="alert alert-danger">{{ form_errors(registrationForm.username) }}{{ form_errors(registrationForm.plainPassword) }}</div>
 
-        {{ form_label(registrationForm.username) }}
-        {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control', 'placeholder': 'Username'|trans}}) }}
 
-        {{ form_label(registrationForm.plainPassword) }}
-        {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Password'|trans}}) }}
 
         <button class="btn btn-lg btn-primary mt-2" type="submit">
-            Register
+            {% trans %}Register{% endtrans %}
         </button>
 
     {{ form_end(registrationForm) }}

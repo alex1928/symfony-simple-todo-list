@@ -9,8 +9,27 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+
     /**
-     * @Route("/", name="app_login")
+     * @Route("/", name="app_locale_detect")$
+     *
+     */
+    public function index(): Response
+    {
+
+        $clientLocale = strtolower(str_split($_SERVER['HTTP_ACCEPT_LANGUAGE'], 2)[0]);
+        $avaliableLocales = explode('|', $this->getParameter('app.locales'));
+
+        if(in_array($clientLocale, $avaliableLocales))
+            return $this->redirect($this->generateUrl('app_login', ['_locale'=>$clientLocale]));
+        else
+            return $this->redirect($this->generateUrl('app_login', ['_locale'=>'en']));
+    }
+
+    /**
+     * @Route("/{_locale}/", name="app_login", requirements={
+     *     "_locale"="%app.locales%"
+     * })
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -31,7 +50,9 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/logout", name="app_logout")
+     * @Route("/{_locale}/logout", name="app_logout", requirements={
+     *     "_locale"="%app.locales%"
+     * })
      */
     public function logout()
     {
