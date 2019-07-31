@@ -1,22 +1,35 @@
+
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
+<html lang="en">
 
-            {{ encore_entry_link_tags('app') }}
+<head>
 
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
 
-        {% block javascripts %}
+        {{ encore_entry_link_tags('app') }}
 
-            {{ encore_entry_script_tags('app') }}
+    {% endblock %}
 
-        {% endblock %}
-    </body>
+</head>
+
+<body>
+
+{% block body %}{% endblock %}
+
+{% block javascripts %}
+
+    {{ encore_entry_script_tags('app') }}
+
+{% endblock %}
+
+</body>
+
 </html>
