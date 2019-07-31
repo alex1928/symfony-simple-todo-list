@@ -16,8 +16,15 @@
                 <li>Added: {{ task.addDate|date('d.m.Y H:i') }}</li>
             </ul>
 
-            <a href="{{ path('task') }}" class="btn btn-lg btn-primary">Back</a>
 
+
+            {{ form_start(form) }}
+
+                <a href="{{ path('task') }}" class="btn btn-lg btn-primary">Back</a>
+
+                {{ form_widget(form.complete_btn, { 'attr': { 'class': 'btn btn-lg btn-success'}}) }}
+
+            {{ form_end(form) }}
         </div>
     </div>
 

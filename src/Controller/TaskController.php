@@ -7,6 +7,7 @@ use App\Form\TaskFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class TaskController extends AbstractController
 {
@@ -15,8 +16,6 @@ class TaskController extends AbstractController
      */
     public function index(Request $request)
     {
-
-        $entityManager = $this->getDoctrine()->getManager();
 
         $user = $this->getUser();
         $tasks = $user->getTasks();
@@ -27,6 +26,8 @@ class TaskController extends AbstractController
         $newTaskForm->handleRequest($request);
 
         if($newTaskForm->isSubmitted() && $newTaskForm->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
 
             $task = $newTaskForm->getData();
             $task->setAddDate(new \DateTime('now'));
@@ -50,10 +51,28 @@ class TaskController extends AbstractController
     /**
      * @Route("/task/{id}", name="show_task")
      */
-    public function show(Task $task) {
+    public function show(Task $task, Request $request) {
+
+        $completeForm = $this->createFormBuilder($task)
+            ->add('complete_btn', SubmitType::class, ['label' => 'Completed'])
+            ->getForm();
+
+        $completeForm->handleRequest($request);
+
+        if($completeForm->isSubmitted() && $completeForm->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($task);
+            $entityManager->flush();
+
+            $this->addFlash("info", "Tas was completed.");
+
+            return $this->redirectToRoute('task');
+        }
 
         return $this->render('task/show.html.twig', [
             'task' => $task,
+            'form' => $completeForm->createView(),
         ]);
     }
 }

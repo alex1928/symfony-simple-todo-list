@@ -13,7 +13,7 @@
                 {% for task in tasks %}
 
                     <a href="{{ path('show_task', { id: task.id }) }}" class="list-group-item list-group-item-action">
-                        {{ task.content|truncate(50) }}
+                        {{ task.content|truncate(80) }}
                     </a>
 
                 {% endfor %}
