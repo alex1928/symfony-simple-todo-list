@@ -9,18 +9,17 @@
             <h1 class="mt-5">{% trans %}Task preview{% endtrans %}</h1>
 
             <p>
-                {{ task.content }}
+                {{ task.content|nl2br }}
             </p>
 
-            <ul>
-                <li>{% trans %}Added{% endtrans %}: {{ task.addDate|date('d.m.Y H:i') }}</li>
-            </ul>
-
+            {% include 'task/task-date-info.html.twig' %}
 
 
             {{ form_start(form) }}
 
                 <a href="{{ path('task') }}" class="btn btn-lg btn-primary">{% trans %}Back{% endtrans %}</a>
+
+                <a href="{{ path('edit_task', { id: task.id }) }}" class="btn btn-lg btn-info">{% trans %}Edit{% endtrans %}</a>
 
                 {{ form_widget(form.complete_btn, { 'attr': { 'class': 'btn btn-lg btn-success'}}) }}
 

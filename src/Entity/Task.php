@@ -37,6 +37,11 @@ class Task
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $editDate;
+
 
     /**
      * @return int|null
@@ -99,6 +104,25 @@ class Task
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTimeInterface|null
+     */
+    public function getEditDate(): ?\DateTimeInterface
+    {
+        return $this->editDate;
+    }
+
+    /**
+     * @param \DateTimeInterface|null $editDate
+     * @return Task
+     */
+    public function setEditDate(?\DateTimeInterface $editDate): self
+    {
+        $this->editDate = $editDate;
 
         return $this;
     }

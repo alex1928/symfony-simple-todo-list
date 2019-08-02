@@ -1,0 +1,37 @@
+{% extends 'base-logged.html.twig' %}
+
+{% block title %}{% trans %}Task editing{% endtrans %}{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="mt-5">{% trans %}Task editing{% endtrans %}</h1>
+
+            {{ form_start(form) }}
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        {{ form_errors(form.content) }}
+                        {{ form_widget(form.content, { 'attr': { 'class': 'form-control', 'rows': 10}}) }}
+                    </div>
+
+                    <div class="form-group col-md-12">
+
+                        {% include 'task/task-date-info.html.twig' %}
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <a href="{{ path('task', { id: task.id }) }}" class="btn btn-lg btn-primary">{% trans %}Back{% endtrans %}</a>
+                        <button class="btn btn-lg btn-success" type="submit">{% trans %}Save{% endtrans %}</button>
+                    </div>
+                </div>
+
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
+{% endblock %}
