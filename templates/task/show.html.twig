@@ -1,26 +1,26 @@
 {% extends 'base-logged.html.twig' %}
 
-{% block title %}Hello TaskController!{% endblock %}
+{% block title %}{% trans %}Task preview{% endtrans %}{% endblock %}
 
 {% block content %}
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="mt-5">Task Preview</h1>
+            <h1 class="mt-5">{% trans %}Task preview{% endtrans %}</h1>
 
             <p>
                 {{ task.content }}
             </p>
 
             <ul>
-                <li>Added: {{ task.addDate|date('d.m.Y H:i') }}</li>
+                <li>{% trans %}Added{% endtrans %}: {{ task.addDate|date('d.m.Y H:i') }}</li>
             </ul>
 
 
 
             {{ form_start(form) }}
 
-                <a href="{{ path('task') }}" class="btn btn-lg btn-primary">Back</a>
+                <a href="{{ path('task') }}" class="btn btn-lg btn-primary">{% trans %}Back{% endtrans %}</a>
 
                 {{ form_widget(form.complete_btn, { 'attr': { 'class': 'btn btn-lg btn-success'}}) }}
 

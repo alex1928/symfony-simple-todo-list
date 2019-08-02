@@ -11,12 +11,24 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+
+/**
+ * Class TaskController
+ * @package App\Controller
+ */
 class TaskController extends AbstractController
 {
+
     /**
      * @Route("/{_locale}/task", name="task", requirements={
      *     "_locale"="%app.locales%"
      * })
+     *
+     * @param Request $request
+     * @param TranslatorInterface $translator
+     * @param LoggerInterface $logger
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
      */
     public function index(Request $request, TranslatorInterface $translator, LoggerInterface $logger)
     {
@@ -40,7 +52,7 @@ class TaskController extends AbstractController
             $entityManager->persist($task);
             $entityManager->flush();
 
-            $this->addFlash("info", $translator->trans("Task has been added."));
+            $this->addFlash("success", $translator->trans("Task has been added."));
 
             return $this->redirectToRoute('task');
         }
@@ -55,10 +67,17 @@ class TaskController extends AbstractController
         ]);
     }
 
+
     /**
+     *
      * @Route("/{_locale}/task/{id}", name="show_task", requirements={
      *     "_locale"="%app.locales%"
      * })
+     *
+     * @param Task $task
+     * @param Request $request
+     * @param TranslatorInterface $translator
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function show(Task $task, Request $request, TranslatorInterface $translator) {
 
@@ -74,7 +93,7 @@ class TaskController extends AbstractController
             $entityManager->remove($task);
             $entityManager->flush();
 
-            $this->addFlash("info", $translator->trans("Task has been completed."));
+            $this->addFlash("success", $translator->trans("Task has been completed."));
 
             return $this->redirectToRoute('task');
         }

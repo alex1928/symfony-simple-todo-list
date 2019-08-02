@@ -13,8 +13,8 @@
                 <source>Task has been completed.</source>
                 <target>Zadanie zostało wykonane.</target>
             </trans-unit>
-            <trans-unit id="completed" resname="completed">
-                <source>completed</source>
+            <trans-unit id="completed" resname="Completed">
+                <source>Completed</source>
                 <target>Wykonane</target>
             </trans-unit>
             <trans-unit id="your_tasks" resname="Your tasks">
@@ -60,6 +60,18 @@
             <trans-unit id="plain_password" resname="Plain password">
                 <source>Plain password</source>
                 <target>Hasło</target>
+            </trans-unit>
+            <trans-unit id="added" resname="Added">
+                <source>Added</source>
+                <target>Dodano</target>
+            </trans-unit>
+            <trans-unit id="back" resname="Back">
+                <source>Back</source>
+                <target>Wróć</target>
+            </trans-unit>
+            <trans-unit id="task_preview" resname="Task preview">
+                <source>Task preview</source>
+                <target>Podgląd zadania</target>
             </trans-unit>
         </body>
     </file>

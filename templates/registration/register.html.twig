@@ -5,14 +5,15 @@
 {% block content %}
     <h1 class="h3 mb-3 font-weight-normal">{% trans %}Register{% endtrans %}</h1>
 
-    {{ form_start(registrationForm) }}
+    {{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
 
 
-        <div class="alert alert-danger">{{ form_errors(registrationForm.username) }}{{ form_errors(registrationForm.plainPassword) }}</div>
-
+        {{ form_errors(registrationForm.username) }}
         {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control', 'placeholder': 'Username'|trans}}) }}
 
+        {{ form_errors(registrationForm.plainPassword) }}
         {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'placeholder': 'Password'|trans}}) }}
+
 
         <button class="btn btn-lg btn-primary mt-2" type="submit">
             {% trans %}Register{% endtrans %}

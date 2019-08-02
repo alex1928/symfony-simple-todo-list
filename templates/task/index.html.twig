@@ -23,6 +23,7 @@
                 <div class="list-group-item">
                     {{ form_start(form) }}
 
+                    {{ form_errors(form.content) }}
                     <div class="form-row">
                         <div class="form-group col-md-11">
                             {{ form_widget(form.content, { 'attr': { 'class': 'form-control' }}) }}
@@ -31,7 +32,7 @@
                         <div class="form-group col-md-1">
                             <button class="btn btn-primary mb-2" type="submit">{% trans %}Add{% endtrans %}</button>
                         </div>
-
+                    </div>
                     {{ form_end(form) }}
                 </div>
 

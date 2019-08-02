@@ -7,12 +7,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+/**
+ * Class SecurityController
+ * @package App\Controller
+ */
 class SecurityController extends AbstractController
 {
+
 
     /**
      * @Route("/", name="app_locale_detect")$
      *
+     * @return Response
      */
     public function index(): Response
     {
@@ -26,10 +32,14 @@ class SecurityController extends AbstractController
             return $this->redirect($this->generateUrl('app_login', ['_locale'=>'en']));
     }
 
+
     /**
      * @Route("/{_locale}/", name="app_login", requirements={
      *     "_locale"="%app.locales%"
      * })
+     *
+     * @param AuthenticationUtils $authenticationUtils
+     * @return Response
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -49,10 +59,13 @@ class SecurityController extends AbstractController
         );
     }
 
+
     /**
      * @Route("/{_locale}/logout", name="app_logout", requirements={
      *     "_locale"="%app.locales%"
      * })
+     *
+     * @throws \Exception
      */
     public function logout()
     {
