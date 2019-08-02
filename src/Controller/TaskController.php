@@ -30,7 +30,7 @@ class TaskController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      */
-    public function index(Request $request, TranslatorInterface $translator, LoggerInterface $logger)
+    public function index(Request $request, TranslatorInterface $translator)
     {
 
         $user = $this->getUser();
@@ -57,13 +57,51 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('task');
         }
 
-        $locale = $request->getLocale();
-        $logger->info($locale);
 
         return $this->render('task/index.html.twig', [
             'controller_name' => 'TaskController',
             'tasks' => $tasks,
             'form' => $newTaskForm->createView(),
+        ]);
+    }
+
+
+    /**
+     * @Route("/{_locale}/task/edit/{id}", name="edit_task", requirements={
+     *     "_locale"="%app.locales%"
+     * })
+     *
+     * @param Task $task
+     * @param Request $request
+     * @param TranslatorInterface $translator
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function edit(Task $task, Request $request, TranslatorInterface $translator) {
+
+        $editForm = $this->createForm(TaskFormType::class, $task);
+
+        $editForm->handleRequest($request);
+
+        if($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $task = $editForm->getData();
+
+            $entityManager->persist($task);
+            $entityManager->flush();
+
+            $this->addFlash('success', $translator->trans("Task has been modified."));
+
+            return $this->redirectToRoute('show_task', [
+               'id' => $task->GetId(),
+            ]);
+        }
+
+
+        return $this->render('task/edit.html.twig', [
+            'task' => $task,
+            'form' => $editForm->createView(),
         ]);
     }
 
@@ -103,4 +141,7 @@ class TaskController extends AbstractController
             'form' => $completeForm->createView(),
         ]);
     }
+
+
+
 }

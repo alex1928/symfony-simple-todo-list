@@ -73,6 +73,22 @@
                 <source>Task preview</source>
                 <target>Podgląd zadania</target>
             </trans-unit>
+            <trans-unit id="task_editing" resname="Task editing">
+                <source>Task editing</source>
+                <target>Edycja zadania</target>
+            </trans-unit>
+            <trans-unit id="edit" resname="Edit">
+                <source>Edit</source>
+                <target>Edytuj</target>
+            </trans-unit>
+            <trans-unit id="save" resname="Save">
+                <source>Save</source>
+                <target>Zapisz</target>
+            </trans-unit>
+            <trans-unit id="task_has_been_modified" resname="Task has been modified.">
+                <source>Task has been modified.</source>
+                <target>Zadanie zostało zmodyfikowane.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
