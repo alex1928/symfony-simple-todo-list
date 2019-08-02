@@ -88,6 +88,9 @@ class TaskController extends AbstractController
 
             $task = $editForm->getData();
 
+            $editDate = new \DateTime('now');
+            $task->setEditDate($editDate);
+
             $entityManager->persist($task);
             $entityManager->flush();
 

@@ -89,6 +89,10 @@
                 <source>Task has been modified.</source>
                 <target>Zadanie zostało zmodyfikowane.</target>
             </trans-unit>
+            <trans-unit id="modified" resname="Modified">
+                <source>Modified</source>
+                <target>Zmodyfikowano</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

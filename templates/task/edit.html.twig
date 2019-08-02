@@ -17,9 +17,9 @@
                     </div>
 
                     <div class="form-group col-md-12">
-                        <ul>
-                            <li>{% trans %}Added{% endtrans %}: {{ task.addDate|date('d.m.Y H:i') }}</li>
-                        </ul>
+
+                        {% include 'task/task-date-info.html.twig' %}
+
                     </div>
 
 

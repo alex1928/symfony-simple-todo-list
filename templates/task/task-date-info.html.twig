@@ -1,0 +1,10 @@
+
+<ul>
+    <li>{% trans %}Added{% endtrans %}: {{ task.addDate|date('d.m.Y H:i') }}</li>
+
+    {% if task.editDate is not null %}
+
+        <li>{% trans %}Modified{% endtrans %}: {{ task.editDate|date('d.m.Y H:i') }}</li>
+
+    {% endif %}
+</ul>
