@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\TaskCategory;
 use App\Entity\User;
 use App\Entity\Task;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -13,8 +14,11 @@ use KnpU\LoremIpsumBundle\KnpUIpsum;
 class AppFixtures extends Fixture
 {
 
+    const TASKS_AMOUNT = 10;
+    const CATEGORIES_AMOUNT = 3;
     private $passwordEncoder;
     private $loremIpsumGenerator;
+
 
     public function __construct(UserPasswordEncoderInterface $encoder, KnpUIpsum $generator)
     {
@@ -27,27 +31,55 @@ class AppFixtures extends Fixture
         $user = new User();
         $user->setUsername('admin');
 
-        $password = $this->passwordEncoder->encodePassword($user, 'testpass');
+        $password = $this->passwordEncoder->encodePassword($user, 'devpass');
 
         $user->setPassword($password);
 
-        for($i = 0; $i < 5; $i++) {
+        $categories = [];
+        for($i = 0; $i < self::CATEGORIES_AMOUNT; $i++) {
 
-            $task = new Task();
+            $category_name = "Category ".($i + 1);
+            $category = new TaskCategory();
+            $category->setName($category_name);
+            $category->setUser($user);
 
-            $content = $this->loremIpsumGenerator->getParagraphs($i + 1);
-            $task->setContent($content);
+            $categories[] = $category;
+        }
 
-            $task->setAddDate(new \DateTime('now'));
 
+        for($i = 0; $i < self::TASKS_AMOUNT; $i++) {
+
+            $task = $this->createRandomTask();
             $task->setUser($user);
-            $user->addTask($task);
+
+            if($i <= self::TASKS_AMOUNT / 2) {
+
+                $taskCategory = $categories[array_rand($categories)];
+                $task->setTaskCategory($taskCategory);
+            }
 
             $manager->persist($task);
         }
 
-        $manager->persist($user);
+        foreach($categories as $category) {
 
+            $manager->persist($category);
+        }
+
+        $manager->persist($user);
         $manager->flush();
+    }
+
+
+
+    private function createRandomTask() {
+
+        $task = new Task();
+        $content = $this->loremIpsumGenerator->getParagraphs(rand(1, 5));
+
+        $task->setContent($content);
+        $task->setAddDate(new \DateTime('now'));
+
+        return $task;
     }
 }

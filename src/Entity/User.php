@@ -46,11 +46,17 @@ class User implements UserInterface
     private $tasks;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\TaskCategory", mappedBy="user", orphanRemoval=true)
+     */
+    private $taskCategories;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
+        $this->taskCategories = new ArrayCollection();
     }
 
     /**
@@ -174,6 +180,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($task->getUser() === $this) {
                 $task->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TaskCategory[]
+     */
+    public function getTaskCategories(): Collection
+    {
+        return $this->taskCategories;
+    }
+
+    public function addTaskCategory(TaskCategory $taskCategory): self
+    {
+        if (!$this->taskCategories->contains($taskCategory)) {
+            $this->taskCategories[] = $taskCategory;
+            $taskCategory->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTaskCategory(TaskCategory $taskCategory): self
+    {
+        if ($this->taskCategories->contains($taskCategory)) {
+            $this->taskCategories->removeElement($taskCategory);
+            // set the owning side to null (unless already changed)
+            if ($taskCategory->getUser() === $this) {
+                $taskCategory->setUser(null);
             }
         }
 
