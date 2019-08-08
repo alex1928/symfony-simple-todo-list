@@ -14,7 +14,13 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                        <a class="nav-link {{ app.request.get('_route') == 'tasks' ? 'active' }}" href="{{ path('tasks') }}">{% trans %}Tasks{% endtrans %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ app.request.get('_route') == 'categories' ? 'active' }}" href="{{ path('categories') }}">{% trans %}Categories{% endtrans %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_logout') }}">{% trans %}Logout{% endtrans %}</a>
                     </li>
                 </ul>
             </div>

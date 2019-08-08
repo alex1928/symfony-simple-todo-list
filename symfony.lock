@@ -105,11 +105,11 @@
             "config/packages/dev/easy_log_handler.yaml"
         ]
     },
+    "fzaninotto/faker": {
+        "version": "v1.8.0"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
-    },
-    "knpuniversity/lorem-ipsum-bundle": {
-        "version": "v1.0.1"
     },
     "monolog/monolog": {
         "version": "1.24.0"
@@ -159,6 +159,9 @@
     "symfony/asset": {
         "version": "v4.3.2"
     },
+    "symfony/browser-kit": {
+        "version": "v4.3.3"
+    },
     "symfony/cache": {
         "version": "v4.3.2"
     },
@@ -180,6 +183,9 @@
             "bin/console",
             "config/bootstrap.php"
         ]
+    },
+    "symfony/css-selector": {
+        "version": "v4.3.3"
     },
     "symfony/debug": {
         "version": "v4.3.2"
@@ -204,6 +210,9 @@
     },
     "symfony/doctrine-bridge": {
         "version": "v4.3.2"
+    },
+    "symfony/dom-crawler": {
+        "version": "v4.3.3"
     },
     "symfony/dotenv": {
         "version": "v4.3.2"
@@ -382,6 +391,9 @@
     },
     "symfony/stopwatch": {
         "version": "v4.3.2"
+    },
+    "symfony/test-pack": {
+        "version": "v1.0.6"
     },
     "symfony/translation": {
         "version": "3.3",

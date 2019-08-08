@@ -53,6 +53,10 @@
                 <source>Log in</source>
                 <target>Zaloguj się</target>
             </trans-unit>
+            <trans-unit id="logout" resname="Logout">
+                <source>Logout</source>
+                <target>Wyloguj</target>
+            </trans-unit>
             <trans-unit id="register" resname="Register">
                 <source>Register</source>
                 <target>Zarejestruj się</target>
@@ -92,6 +96,46 @@
             <trans-unit id="modified" resname="Modified">
                 <source>Modified</source>
                 <target>Zmodyfikowano</target>
+            </trans-unit>
+            <trans-unit id="unassigned" resname="Unassigned">
+                <source>Unassigned</source>
+                <target>Nieprzypisane</target>
+            </trans-unit>
+            <trans-unit id="tasks" resname="Tasks">
+                <source>Tasks</source>
+                <target>Zadania</target>
+            </trans-unit>
+            <trans-unit id="categories" resname="Categories">
+                <source>Categories</source>
+                <target>Kategorie</target>
+            </trans-unit>
+            <trans-unit id="your_categories" resname="Your categories">
+                <source>Your categories</source>
+                <target>Twoje kategorie</target>
+            </trans-unit>
+            <trans-unit id="category_with_this_name_already_exists" resname="Category with this name already exists.">
+                <source>Category with this name already exists.</source>
+                <target>Kategoria o tej nazwie już istnieje.</target>
+            </trans-unit>
+            <trans-unit id="category_has_beend_added" resname="Category has been added.">
+                <source>Category has been added.</source>
+                <target>Kategoria została dodana.</target>
+            </trans-unit>
+            <trans-unit id="category_has_beend_modifed" resname="Category has been modified.">
+                <source>Category has been modified.</source>
+                <target>Kategoria została zmieniona.</target>
+            </trans-unit>
+            <trans-unit id="category_has_beend_removed" resname="Category has been removed.">
+                <source>Category has been removed.</source>
+                <target>Kategoria została usunięta.</target>
+            </trans-unit>
+            <trans-unit id="category_editing" resname="Category editing">
+                <source>Category editing</source>
+                <target>Edycja kategorii</target>
+            </trans-unit>
+            <trans-unit id="remove" resname="Remove">
+                <source>Remove</source>
+                <target>Usuń</target>
             </trans-unit>
         </body>
     </file>

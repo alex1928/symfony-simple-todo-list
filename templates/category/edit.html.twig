@@ -1,0 +1,32 @@
+{% extends 'base-logged.html.twig' %}
+
+{% block title %}{% trans %}Category editing{% endtrans %}{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="mt-5">{% trans %}Category editing{% endtrans %}</h1>
+
+            {{ form_start(form) }}
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name) }}
+                </div>
+
+
+                <div class="form-group">
+                    <a href="{{ path('categories', { id: category.id }) }}" class="btn btn-lg btn-primary">{% trans %}Back{% endtrans %}</a>
+                    <button class="btn btn-lg btn-success" type="submit">{% trans %}Save{% endtrans %}</button>
+                    <a href="{{ path('remove_category', { id: category.id }) }}" class="btn btn-lg btn-danger">{% trans %}Remove{% endtrans %}</a>
+                </div>
+            </div>
+
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
+{% endblock %}

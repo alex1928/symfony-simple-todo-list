@@ -42,6 +42,11 @@ class Task
      */
     private $editDate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\TaskCategory", inversedBy="tasks")
+     */
+    private $taskCategory;
+
 
     /**
      * @return int|null
@@ -123,6 +128,25 @@ class Task
     public function setEditDate(?\DateTimeInterface $editDate): self
     {
         $this->editDate = $editDate;
+
+        return $this;
+    }
+
+    /**
+     * @return TaskCategory|null
+     */
+    public function getTaskCategory(): ?TaskCategory
+    {
+        return $this->taskCategory;
+    }
+
+    /**
+     * @param TaskCategory|null $taskCategory
+     * @return Task
+     */
+    public function setTaskCategory(?TaskCategory $taskCategory): self
+    {
+        $this->taskCategory = $taskCategory;
 
         return $this;
     }
