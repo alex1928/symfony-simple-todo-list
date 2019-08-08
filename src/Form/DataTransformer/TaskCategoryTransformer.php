@@ -42,8 +42,9 @@ class TaskCategoryTransformer implements DataTransformerInterface {
      */
     public function reverseTransform($taskCategoryId)
     {
-        if($taskCategoryId === null && $taskCategoryId === '') {
-            return '';
+        if($taskCategoryId === null || $taskCategoryId === '') {
+
+            return null;
         }
 
         $taskCategory = $this->taskCategoryRepository->find($taskCategoryId);

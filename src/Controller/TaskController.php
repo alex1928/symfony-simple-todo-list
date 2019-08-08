@@ -101,12 +101,11 @@ class TaskController extends AbstractController
 
         if($newTaskForm->isSubmitted()) {
 
-            $task = $newTaskForm->getData();
-
             if($newTaskForm->isValid()) {
 
                 $entityManager = $this->getDoctrine()->getManager();
 
+                $task = $newTaskForm->getData();
                 $task->setAddDate(new \DateTime('now'));
                 $task->SetUser($user);
 
