@@ -10,10 +10,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * Class CategoryController
+ * @package App\Controller
+ */
 class CategoryController extends AbstractController
 {
+
     /**
      * @Route("/categories", name="categories")
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index()
     {
@@ -35,6 +42,11 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("/category/new", name="new_category")
+     *
+     * @param Request $request
+     * @param TaskCategoryRepository $categoryRepository
+     * @param TranslatorInterface $translator
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function new(Request $request, TaskCategoryRepository $categoryRepository, TranslatorInterface $translator)
     {
@@ -82,6 +94,12 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("/category/edit/{id<\d+>}", name="edit_category")
+     *
+     * @param TaskCategory $category
+     * @param Request $request
+     * @param TaskCategoryRepository $categoryRepository
+     * @param TranslatorInterface $translator
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function edit(TaskCategory $category, Request $request, TaskCategoryRepository $categoryRepository, TranslatorInterface $translator)
     {
@@ -129,6 +147,10 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("/category/remove/{id<\d+>}", name="remove_category")
+     *
+     * @param TaskCategory $category
+     * @param TranslatorInterface $translator
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function remove(TaskCategory $category, TranslatorInterface $translator) {
 
