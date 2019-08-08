@@ -44,6 +44,7 @@ class Task
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\TaskCategory", inversedBy="tasks")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $taskCategory;
 

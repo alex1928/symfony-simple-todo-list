@@ -161,13 +161,6 @@ class CategoryController extends AbstractController
         }
 
         $manager = $this->getDoctrine()->getManager();
-        $categoryTasks = $category->getTasks();
-
-        foreach($categoryTasks as $task) {
-            $task->setTaskCategory(null);
-            $manager->persist($task);
-        }
-
         $manager->remove($category);
         $manager->flush();
 
