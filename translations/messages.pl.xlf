@@ -53,6 +53,10 @@
                 <source>Log in</source>
                 <target>Zaloguj się</target>
             </trans-unit>
+            <trans-unit id="logout" resname="Logout">
+                <source>Logout</source>
+                <target>Wyloguj</target>
+            </trans-unit>
             <trans-unit id="register" resname="Register">
                 <source>Register</source>
                 <target>Zarejestruj się</target>
@@ -92,6 +96,10 @@
             <trans-unit id="modified" resname="Modified">
                 <source>Modified</source>
                 <target>Zmodyfikowano</target>
+            </trans-unit>
+            <trans-unit id="unassigned" resname="Unassigned">
+                <source>Unassigned</source>
+                <target>Nieprzypisane</target>
             </trans-unit>
         </body>
     </file>

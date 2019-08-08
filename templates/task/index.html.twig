@@ -6,9 +6,27 @@
 
 {% block content %}
 
+
+
     <div class="row">
         <div class="col-lg-12">
             <h1 class="mt-5">{% trans %}Your tasks{% endtrans %}</h1>
+
+            <ul class="nav nav-tabs">
+
+                <li class="nav-item">
+                    <a class="nav-link {{ currentCategory is null ? 'active' : '' }}" href="{{ path('tasks') }}">{% trans %}Unassigned{% endtrans %}</a>
+                </li>
+
+                {% for category in categories %}
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ currentCategory is not null and currentCategory.id == category.id ? 'active' : '' }}" href="{{ path('tasks_category', { id: category.id}) }}">{{ category.name }}</a>
+                    </li>
+
+                {% endfor %}
+
+            </ul>
 
             <div class="list-group">
 

@@ -45,7 +45,7 @@ class SecurityController extends AbstractController
     {
         if ($this->getUser()) {
 
-            return $this->redirectToRoute('task');
+            return $this->redirectToRoute('tasks');
         }
 
         // get the login error if there is one
