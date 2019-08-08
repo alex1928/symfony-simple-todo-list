@@ -8,22 +8,22 @@ use App\Entity\Task;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use KnpU\LoremIpsumBundle\KnpUIpsum;
+use Faker\Factory;
+
 
 
 class AppFixtures extends Fixture
 {
-
     const TASKS_AMOUNT = 10;
     const CATEGORIES_AMOUNT = 3;
     private $passwordEncoder;
-    private $loremIpsumGenerator;
+    private $faker;
 
 
-    public function __construct(UserPasswordEncoderInterface $encoder, KnpUIpsum $generator)
+    public function __construct(UserPasswordEncoderInterface $encoder)
     {
         $this->passwordEncoder = $encoder;
-        $this->loremIpsumGenerator = $generator;
+        $this->faker = Factory::create();
     }
 
     public function load(ObjectManager $manager)
@@ -75,11 +75,12 @@ class AppFixtures extends Fixture
     private function createRandomTask() {
 
         $task = new Task();
-        $content = $this->loremIpsumGenerator->getParagraphs(rand(1, 5));
+        $content = $this->faker->paragraphs(rand(1, 5), true);
 
         $task->setContent($content);
         $task->setAddDate(new \DateTime('now'));
 
         return $task;
     }
+
 }

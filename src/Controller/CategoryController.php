@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\TaskCategory;
-use App\Form\TaskCategoryFormType;
+use App\Form\Type\TaskCategoryFormType;
 use App\Repository\TaskCategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

@@ -23,6 +23,7 @@ class TaskCategory
      * @ORM\Column(type="string", length=32)
      * @Assert\NotBlank
      * @Assert\Length(min=3)
+     * @Assert\Length(max=32)
      */
     private $name;
 
