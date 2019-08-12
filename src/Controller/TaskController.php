@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use App\Entity\TaskCategory;
+use App\Form\Type\TaskEditFormType;
 use App\Form\Type\TaskFormType;
 use App\Repository\TaskRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -187,7 +188,7 @@ class TaskController extends AbstractController
      */
     public function edit(Task $task, Request $request, TranslatorInterface $translator)
     {
-        $editForm = $this->createForm(TaskFormType::class, $task);
+        $editForm = $this->createForm(TaskEditFormType::class, $task);
 
         $editForm->handleRequest($request);
 

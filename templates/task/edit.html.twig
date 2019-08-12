@@ -17,6 +17,11 @@
                     </div>
 
                     <div class="form-group col-md-12">
+                        {{ form_errors(form.taskCategory) }}
+                        {{ form_widget(form.taskCategory) }}
+                    </div>
+
+                    <div class="form-group col-md-12">
 
                         {% include 'task/task-date-info.html.twig' %}
 
@@ -24,7 +29,7 @@
 
 
                     <div class="form-group">
-                        <a href="{{ path('tasks', { id: task.id }) }}" class="btn btn-lg btn-primary">{% trans %}Back{% endtrans %}</a>
+                        <a href="{{ path('show_task', { id: task.id }) }}" class="btn btn-lg btn-primary">{% trans %}Back{% endtrans %}</a>
                         <button class="btn btn-lg btn-success" type="submit">{% trans %}Save{% endtrans %}</button>
                     </div>
                 </div>
