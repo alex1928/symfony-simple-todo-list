@@ -26,10 +26,6 @@ class TaskEditFormType extends AbstractType
     {
         $user = $this->security->getUser();
 
-        $noAssignedCategory = new TaskCategory();
-        $noAssignedCategory->setName($this->translator->trans('Unassigned'));
-        $noAssignedCategory->setUser($user);
-
         $builder
             ->add('content')
             ->add('taskCategory', ChoiceType::class, [
